@@ -10,5 +10,11 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
-    command: npm run dev
+      - MONGO_USER=racky
+      - MONGO_PASSWORD=password
+    command: sh -c "npm install -g nodemon && npm install && npm run dev"
   
+  mongo:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=racky
+      - MONGO_INITDB_ROOT_PASSWORD=password
