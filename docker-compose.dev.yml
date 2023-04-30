@@ -12,6 +12,7 @@ services:
       - NODE_ENV=development
       - MONGO_USER=racky
       - MONGO_PASSWORD=password
+      - SESSION_SECRET=secret
     command: sh -c "npm install -g nodemon && npm install && npm run dev"
   
   mongo:
