@@ -2,6 +2,8 @@ const Post = require("../models/postModel")
 
 exports.getAllPosts = async (req, res, next) => {
 
+    console.log('it runs')
+
     try {
         const posts = await Post.find();
 

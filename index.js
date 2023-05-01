@@ -9,7 +9,11 @@ const { MONGO_USER, MONGO_PASSWORD, MONGO_IP, REDIS_URL, SESSION_SECRET, REDIS_P
 const postRouter = require("./routes/postRoutes")
 const userRouter = require("./routes/userRoutes")
 
+const cors = require("cors")
+
 const app = express()
+
+app.use(cors());
 
 const MONGO_URI = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:27017?authSource=admin`
 
@@ -39,6 +43,7 @@ let redisStore = new RedisStore({
   client: redisClient
 })
 
+app.enable("trust proxy")
 // Initialize sesssion storage.
 app.use(
   session({
@@ -64,7 +69,7 @@ app.get('/', (req, res) => {
 
 app.use("/posts", postRouter)
 app.use("/users", userRouter)
-
+ 
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
